@@ -48,6 +48,27 @@ function inputForm(model){
     ])
 }
 
+function listForm(model){
+    const {unitFrom} = model
+    const {unitTo} = model
+    const messageFrom = 'From?'
+    const messageTo = 'To?'
+    const choices = ['Celsius', 'Fahrenheit','Kelvin']
+    return inquirer.prompt([{
+        name: 'unitFrom',
+        type: 'list',
+        message: messageFrom,
+        default: unitFrom,
+        choices: choices
+    },
+    {name: 'unitTo',
+    type: 'list',
+    message: messageTo,
+    default: unitTo,
+    choices: choices
+
+    }])
+}
 
 
 // Get actual console view
@@ -61,4 +82,5 @@ function view(model){
 module.exports = {
     view, 
     inputForm,
+    listForm
 }
