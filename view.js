@@ -77,7 +77,7 @@ function listForm(model){
 }
 
 
-// Get actual console view
+
 function view(model){
     return {
         title: getTitle(),

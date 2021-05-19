@@ -1,7 +1,7 @@
 const {inputForm, listForm} = require('./view')
 const {printTable} = require('console-table-printer')
 
-// Impure
+
 async function app(state, update, view){
     while (true){
         const {model, currentView} = state
