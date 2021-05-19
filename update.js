@@ -1,45 +1,30 @@
-const FUNCTIONS = {
-    'Y': normal,
-    'n': change
-}
-function normal(temperatureFrom, unitFrom, temperatureTo, unitTo){
-    return {
-        temperatureFrom,
-        unitFrom
-    }
-}
-function change(temperatureFrom, unitFrom, temperatureTo, unitTo){
-    return {
-        temperatureTo,
-        unitTo
-    }
-}
+
 function getTemperatureTo(temperatureFrom, unitFrom, unitTo){
     switch(unitFrom){
         case 'Celsius':
             switch(unitTo){
                 case 'Kelvin':
-                    return temperatureFrom+273.15
+                    return (1*temperatureFrom)+273.15
                 case 'Fahrenheit':
                     return (temperatureFrom* 9/5)+32;
                 default:
-                    return temperatureFrom 
+                    return 1*temperatureFrom 
             }
         case 'Kelvin':
             switch(unitTo){
                 case 'Celsius':
-                    return temperatureFrom-273.15
+                    return (1*temperatureFrom)-273.15
                 case 'Fahrenheit':
-                    return ((temperatureFrom-273.15)* 9/5)+32;
+                    return (((1*temperatureFrom)-273.15)* 9/5)+32;
                 default:
                     return temperatureFrom 
             }
         case 'Fahrenheit':
             switch(unitTo){
                 case 'Celsius':
-                    return (temperatureFrom-32)* 5/9
+                    return ((1*temperatureFrom)-32)* 5/9
                 case 'Kelvin':
-                    return ((temperatureFrom-32) * 5/9) + 273.15;
+                    return (((1*temperatureFrom)-32) * 5/9) + 273.15;
                 default:
                     return temperatureFrom 
             }               
@@ -47,14 +32,28 @@ function getTemperatureTo(temperatureFrom, unitFrom, unitTo){
             return false
     }
 }
-function update(input, model){
-    const {input} = model
-    const {temperatureInitial, unitInitial} = FUNCTIONS[input](temperatureFrom, unitFrom, model)
-    const{temperatureFinal}= getTemperatureTo(temperatureInitial, unitInitial, unitFrom )
-    return {
-        ...model,
-        temperatureTo: temperatureFinal,
-        input: input
+function update(input, temperatureFrom, unitFrom, unitTo, model){
+    const temperatureFinal= getTemperatureTo(temperatureFrom, unitFrom, unitTo)
+    if (input==='Y'){
+        return {
+            ...model,
+            temperatureTo: temperatureFinal,
+            input: input,
+            temperatureFrom: temperatureFrom,
+            unitTo: unitTo,
+            unitFrom: unitFrom
+        }
+    }
+    else{ 
+        return{
+            ...model,
+            temperatureFrom: temperatureFinal,
+            input: input,
+            unitFrom: unitTo,
+            unitTo: unitFrom,
+            temperatureTo: temperatureFrom
+
+    }
     }
 }
 module.exports={

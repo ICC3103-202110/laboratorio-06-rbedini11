@@ -37,13 +37,19 @@ function inputForm(model){
             name: 'input',
             type: 'input',
             message: message1,
-            default: input
-            },
+            default: input,
+            validate: function(value){
+                if(value === 'Y' || value === 'n'){
+                    return true
+                } else {
+                    return 'Enter Y or n'
+                }
+            }},
         { 
         name: 'temperatureFrom',
         type: 'temperatureFrom',
         message: message2,
-        default: temperatureFrom
+        default: temperatureFrom,
         }
     ])
 }

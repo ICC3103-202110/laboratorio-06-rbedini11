@@ -11,7 +11,7 @@ async function app(state, update, view){
         printTable(table)
         const {input, temperatureFrom} = await inputForm(model)
         const {unitFrom, unitTo} = await listForm(model)
-        const updatedModel = update(input, temperatureFrom, unitFrom, unitTo, temperatureTo)
+        const updatedModel = update(input, temperatureFrom, unitFrom, unitTo, model)
         state = {
             ...state,
             model: updatedModel,
